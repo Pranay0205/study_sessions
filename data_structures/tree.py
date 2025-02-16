@@ -1,24 +1,41 @@
 class BSTNode:
+    def get_min(self):
+        if self == None:
+            return self
+
+        if self.left != None:
+            return self.left.get_min()
+
+    def get_max(self):
+        if self == None:
+            return self
+
+        if self.right != None:
+            return self.right.get_max()
+
+    # don't touch below this line
+
     def __init__(self, val=None):
         self.left = None
         self.right = None
         self.val = val
 
     def insert(self, val):
-        if self.val == None:
+        if not self.val:
             self.val = val
             return
 
         if self.val == val:
             return
 
-        if val < self.val and self.left == None:
+        if val < self.val:
+            if self.left:
+                self.left.insert(val)
+                return
             self.left = BSTNode(val)
             return
-        elif val < self.val and self.left != None:
-            self.left.insert(val)
-        elif val > self.val and self.right != None:
+
+        if self.right:
             self.right.insert(val)
-        else:
-            self.right = BSTNode(val)
             return
+        self.right = BSTNode(val)
