@@ -7,8 +7,6 @@ class Graph:
         self.graph[u][v] = True
         self.graph[v][u] = True
 
-    # don't touch below this line
-
     def edge_exists(self, u, v):
         if u < 0 or u >= len(self.graph):
             return False
